@@ -1,3 +1,5 @@
+import net.fabricmc.loom.task.RemapJarTask
+import net.fabricmc.loom.task.RemapSourcesJarTask
 import java.io.FileInputStream
 import java.util.*
 
@@ -37,6 +39,73 @@ sourceSets {
     }
 }
 
+tasks.register<Exec>("cloneJcef") {
+    commandLine("git", "submodule", "update", "--init", "--recursive", "java-cef")
+}
+
+fun getCheckedOutGitCommitHash(projectDir: String): String {
+    val gitFolder = "$projectDir/.git/modules/java-cef/"
+    val gitHeadFile = File(gitFolder + "HEAD")
+    if (gitHeadFile.exists()) {
+        val head = gitHeadFile.readText().split(":")
+        return if (head.size == 1) head[0].trim() else File(gitFolder + head[1].trim()).readText().trim()
+    }
+    return ""
+}
+
+tasks.register("generateJcefCommitFile") {
+    doLast {
+        val commitHash = getCheckedOutGitCommitHash(project.projectDir.toString())
+        if (commitHash.isNotEmpty()) {
+            file("$buildDir/jcef.commit").writeText(commitHash)
+        } else {
+            throw GradleException("Unable to determine JCEF commit hash.")
+        }
+    }
+}
+
+java {
+    withJavadocJar()
+    withSourcesJar()
+
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+}
+
+tasks.withType<JavaCompile> {
+    options.release.set(21)
+}
+
+tasks.named<Jar>("jar") {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    dependsOn(tasks.named("generateJcefCommitFile"))
+    manifest {
+        attributes(
+            "Specification-Title" to project.name,
+            "Specification-Vendor" to project.group.toString(),
+            "Specification-Version" to "1",
+            "Implementation-Title" to project.name,
+            "Implementation-Version" to project.version.toString(),
+            "Implementation-Vendor" to project.group.toString(),
+            "Implementation-Timestamp" to Date().toString(),
+            "java-cef-commit" to getCheckedOutGitCommitHash(project.projectDir.toString())
+        )
+    }
+    from(sourceSets["jcef"].output)
+    from("$buildDir/jcef.commit")
+}
+
+tasks.named<RemapJarTask>("remapJar") {
+    dependsOn(tasks.named("jar"))
+    input.set(tasks.named<Jar>("jar").flatMap { it.archiveFile })
+    archiveClassifier.set("")
+}
+
+tasks.named<RemapSourcesJarTask>("remapSourcesJar") {
+    input.set(tasks.named<Jar>("sourcesJar").flatMap { it.archiveFile })
+    archiveClassifier.set("sources")
+}
+
 publishing {
     publications {
         create<MavenPublication>("mavenJava") {
@@ -49,23 +118,23 @@ publishing {
             pom {
                 name.set("MCEF")
                 description.set("A Minecraft API to embed a Chromium browser")
-                url.set("https://github.com/yourusername/mcefapi")
+                url.set("https://github.com/KT-Ruxy/MCEF")
                 licenses {
                     license {
-                        name.set("MIT License")
-                        url.set("https://opensource.org/licenses/MIT")
+                        name.set("LGPL-2.1")
+                        url.set("https://www.gnu.org/licenses/old-licenses/lgpl-2.1.ja.html")
                     }
                 }
                 developers {
                     developer {
-                        id.set("yourusername")
-                        name.set("Your Name")
+                        id.set("ruxy")
+                        name.set("Ruxy")
                     }
                 }
                 scm {
-                    connection.set("scm:git:git://github.com/yourusername/mcefapi.git")
-                    developerConnection.set("scm:git:ssh://github.com/yourusername/mcefapi.git")
-                    url.set("https://github.com/yourusername/mcefapi")
+                    connection.set("scm:git:git://github.com/KT-Ruxy/MCEF.git")
+                    developerConnection.set("scm:git:ssh://github.com/KT-Ruxy/MCEF.git")
+                    url.set("https://github.com/KT-Ruxy/MCEF")
                 }
             }
         }
@@ -73,12 +142,19 @@ publishing {
 
     repositories {
         maven {
-            name = "OSSRH"
-            url = uri("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/")
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/KT-Ruxy/MCEF")
             credentials {
-                username = project.findProperty("ossrhUsername") as String? ?: System.getenv("OSSRH_USERNAME")
-                password = project.findProperty("ossrhPassword") as String? ?: System.getenv("OSSRH_PASSWORD")
+                username = localProperties["gpr.user"] as String? ?: System.getenv("GPR_USER")
+                password = localProperties["gpr.token"] as String? ?: System.getenv("GPR_TOKEN")
             }
         }
     }
+}
+
+tasks.javadoc {
+    if (JavaVersion.current().isJava9Compatible) {
+        (options as StandardJavadocDocletOptions).addBooleanOption("html5", true)
+    }
+    isFailOnError = false
 }
