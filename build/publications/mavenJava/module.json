@@ -1,0 +1,136 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "net.rk4z",
+    "module": "mcef",
+    "version": "1.0.0+1.20.6",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "8.6"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.jvm.version": 21,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.0.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "mcef-1.0.0+1.20.6.jar",
+          "url": "mcef-1.0.0+1.20.6.jar",
+          "size": 214202,
+          "sha512": "dd905085e676ed16f67d5369112f4d6e9695d47663d88f275e68a287df8a203ff3a36e9c42ec020f1277bcf77e1ab33b73a7cf3b748a7cec27c167c2fd3f4749",
+          "sha256": "863463534c044b306741f6ae9fda71fd653aafeee1beaf499e0867627a1e8b7a",
+          "sha1": "adbdf46140466dcab73aee6d823f654d5bf868c0",
+          "md5": "17bcf4df8b3981238d3444e50dc10fc1"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.jvm.version": 21,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.apache.commons",
+          "module": "commons-exec",
+          "version": {
+            "requires": "1.3"
+          }
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib",
+          "version": {
+            "requires": "2.0.0"
+          }
+        },
+        {
+          "group": "net.fabricmc",
+          "module": "fabric-loader",
+          "version": {
+            "requires": "0.15.11"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "mcef-1.0.0+1.20.6.jar",
+          "url": "mcef-1.0.0+1.20.6.jar",
+          "size": 214202,
+          "sha512": "dd905085e676ed16f67d5369112f4d6e9695d47663d88f275e68a287df8a203ff3a36e9c42ec020f1277bcf77e1ab33b73a7cf3b748a7cec27c167c2fd3f4749",
+          "sha256": "863463534c044b306741f6ae9fda71fd653aafeee1beaf499e0867627a1e8b7a",
+          "sha1": "adbdf46140466dcab73aee6d823f654d5bf868c0",
+          "md5": "17bcf4df8b3981238d3444e50dc10fc1"
+        }
+      ]
+    },
+    {
+      "name": "javadocElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "javadoc",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "mcef-1.0.0+1.20.6-javadoc.jar",
+          "url": "mcef-1.0.0+1.20.6-javadoc.jar",
+          "size": 155062,
+          "sha512": "bd0a2f16104e65201f8abd789fe406827aec3cf913a5ba279da621654b8f10757027433b017005f8b89a17bff1b5f170447f50d9050a4898d0874fe22f445b92",
+          "sha256": "269d7190953ae2d8415174deaf5425e6c7f781e9b8dc4366665780dc574eaad7",
+          "sha1": "00cc91ed02b40c504812685600d184863d0bd6e5",
+          "md5": "7f2054b05194346b65b22a0d7cce3963"
+        }
+      ]
+    },
+    {
+      "name": "sourcesElements",
+      "attributes": {
+        "org.gradle.category": "documentation",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.docstype": "sources",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "mcef-1.0.0+1.20.6-sources.jar",
+          "url": "mcef-1.0.0+1.20.6-sources.jar",
+          "size": 27857,
+          "sha512": "052f07752cd946a8bea2a6dc168bf36df0d446bb31a6a2b0f6d47080587167d8b37f26ba4c2bde51b979d3d0b4f4306c45664a8bc3d7075f265187813f42b713",
+          "sha256": "922f61278241641799dcac5c144944ee84e6239d63842fe95710ec40e5437693",
+          "sha1": "c76efe775f1d0efc2589aa0442d3dc20f2513a6c",
+          "md5": "85f1734ca3c166728de39605450892d8"
+        }
+      ]
+    }
+  ]
+}

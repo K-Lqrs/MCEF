@@ -21,6 +21,7 @@ dependencies {
     minecraft("com.mojang:minecraft:$minecraftVersion")
     mappings("net.fabricmc:yarn:$yarnMappings")
     modImplementation("net.fabricmc:fabric-loader:$loaderVersion")
+    implementation("org.apache.commons:commons-exec:1.3")
 }
 
 val localProperties = Properties().apply {
@@ -113,7 +114,7 @@ publishing {
 
             groupId = "net.rk4z"
             artifactId = "mcef"
-            version = "1.0.0"
+            version = "1.0.0+1.20.6"
 
             pom {
                 name.set("MCEF")

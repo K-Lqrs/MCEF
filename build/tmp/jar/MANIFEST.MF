@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Specification-Title: MCEF
+Specification-Vendor: 
+Specification-Version: 1
+Implementation-Title: MCEF
+Implementation-Version: unspecified
+Implementation-Vendor: 
+Implementation-Timestamp: Sun Jun 09 20:50:52 JST 2024
+java-cef-commit: 0e837c94ea090b6eb4b9bc65428ec28fd75d1d72
+
