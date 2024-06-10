@@ -1,6 +1,6 @@
 /*
  *     MCEF (Minecraft Chromium Embedded Framework)
- *     Copyright (C) 2023 CinemaMod Group
+ *     Copyright (C) 2024 Ruxy
  *
  *     This library is free software; you can redistribute it and/or
  *     modify it under the terms of the GNU Lesser General Public
