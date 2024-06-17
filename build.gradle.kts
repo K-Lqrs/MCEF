@@ -116,7 +116,7 @@ publishing {
 
             groupId = "net.rk4z"
             artifactId = "mcef"
-            version = "1.2.0+1.20.6"
+            version = "1.2.1+1.20.6"
 
             pom {
                 name.set("MCEF")

@@ -13,8 +13,7 @@ import java.io.InputStreamReader
  * a modified version of java-cef (Java Chromium Embedded Framework).
  */
 object MCEF {
-
-    val logger: Logger = LoggerFactory.getLogger("MCEF")
+    val logger: Logger = LoggerFactory.getLogger(this::class.java.simpleName)
     var settings: MCEFSettings? = MCEFSettings()
     private var app: MCEFApp? = null
         get() {
@@ -39,8 +38,6 @@ object MCEF {
     @Throws(IOException::class)
     fun initialize(): Boolean {
         logger.info("Initializing CEF on {}...", MCEFPlatform.getPlatform().normalizedName)
-
-        resourceManager = newResourceManager()
 
         if (CefHelper.init()) {
             app = MCEFApp(CefHelper.getCefApp())
