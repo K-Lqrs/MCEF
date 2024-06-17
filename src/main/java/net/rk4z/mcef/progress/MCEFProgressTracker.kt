@@ -1,67 +1,36 @@
-/*
- * This file is part of LiquidBounce (https://github.com/CCBlueX/LiquidBounce)
- *
- * Copyright (c) 2024 CCBlueX
- *
- * LiquidBounce is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * LiquidBounce is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with LiquidBounce. If not, see <https://www.gnu.org/licenses/>.
- *
- *
- */
+package net.rk4z.mcef.progress
 
-package net.rk4z.mcef.progress;
+import net.rk4z.mcef.MCEF
 
-import net.rk4z.mcef.MCEF;
+class MCEFProgressTracker {
 
-public class MCEFProgressTracker {
+    var task: String? = null
+        private set
+    var progress: Float = 0f
+        private set
+    var isDone: Boolean = false
+        private set
 
-    private String task;
-    private float percent;
-    private boolean done;
+    private var loggedPercent: Float = 0f
 
-    private float loggedPercent;
-
-    public void setTask(String name) {
-        this.task = name;
-        this.percent = 0;
-
-        MCEF.INSTANCE.getLogger().info("[" + this.task + "] Started task");
+    fun setTask(name: String) {
+        task = name
+        progress = 0f
+        MCEF.logger.info("[$task] Started task")
     }
 
-    public String getTask() {
-        return task;
-    }
+    fun setProgress(percent: Float) {
+        progress = percent.coerceIn(0f, 1f)
 
-    public void setProgress(float percent) {
-        this.percent = Math.min(1, Math.max(0, percent));
-
-        if ((int) (this.percent * 100) != (int) (loggedPercent * 100)) {
-            MCEF.INSTANCE.getLogger().info("[" + this.task + "] Progress " + (int) (this.percent * 100) + "%");
-            this.loggedPercent = this.percent;
+        if ((progress * 100).toInt() != (loggedPercent * 100).toInt()) {
+            MCEF.logger.info("[$task] Progress ${(progress * 100).toInt()}%")
+            loggedPercent = progress
         }
     }
 
-    public float getProgress() {
-        return percent;
+    fun done() {
+        isDone = true
+        MCEF.logger.info("[$task] Finished task")
     }
-
-    public void done() {
-        this.done = true;
-        MCEF.INSTANCE.getLogger().info("[" + this.task + "] Finished task");
-    }
-
-    public boolean isDone() {
-        return done;
-    }
-
 }
+

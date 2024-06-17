@@ -5,8 +5,8 @@ import java.util.*
 
 plugins {
     kotlin("jvm") version "2.0.0"
-    id ("maven-publish")
-    id ("fabric-loom")
+    id("maven-publish")
+    id("fabric-loom")
 }
 
 repositories {
@@ -21,7 +21,7 @@ dependencies {
     minecraft("com.mojang:minecraft:$minecraftVersion")
     mappings("net.fabricmc:yarn:$yarnMappings")
     modImplementation("net.fabricmc:fabric-loader:$loaderVersion")
-    implementation("org.apache.commons:commons-exec:1.3")
+    implementation("org.apache.commons:commons-exec:1.4.0")
 }
 
 val localProperties = Properties().apply {
@@ -110,11 +110,13 @@ tasks.named<RemapSourcesJarTask>("remapSourcesJar") {
 publishing {
     publications {
         create<MavenPublication>("mavenJava") {
-            from(components["java"])
+            artifact(file("build/devlibs/MCEF-dev.jar")) {
+                builtBy(tasks.named("jar"))
+            }
 
             groupId = "net.rk4z"
             artifactId = "mcef"
-            version = "1.0.0+1.20.6"
+            version = "1.2.0+1.20.6"
 
             pom {
                 name.set("MCEF")
