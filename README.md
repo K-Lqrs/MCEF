@@ -1,4 +1,4 @@
-## To download this API, contact my Discord (k_ruxy) and get an access token!
+**To download this API, contact my Discord (k_ruxy) and get an access token!**
 
 <p align="center">
     <img src="https://github.com/CinemaMod/mcef/assets/30220598/938896d7-2589-49df-8f82-29266c64dfb7" alt="MCEF" style="width:66px;height:66px;">
