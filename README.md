@@ -1,5 +1,3 @@
-**To get a Key for download, send a DM to Discord 'k_ruxy'**
-
 <p align="center">
     <img src="https://github.com/CinemaMod/mcef/assets/30220598/938896d7-2589-49df-8f82-29266c64dfb7" alt="MCEF" style="width:66px;height:66px;">
 </p>
@@ -28,9 +26,7 @@ This is a fork of the [MCEF (Minecraft Chromium Embedded Framework)](https://git
 #### Kotlin DSL
 ```kotlin
 repositories {
-    maven {
-        url = uri("https://maven.pkg.github.com/KT-Ruxy/MCEF")
-    }
+    mavenCentral()
 }
 
 dependencies {
@@ -40,9 +36,7 @@ dependencies {
 #### Groovy DSL
 ```groovy
 repositories {
-    maven {
-        url "https://maven.pkg.github.com/KT-Ruxy/MCEF"
-    }
+    mavenCentral()
 }
 
 dependencies {
