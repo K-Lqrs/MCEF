@@ -22,6 +22,7 @@ This is a fork of the [MCEF (Minecraft Chromium Embedded Framework)](https://git
 **This mod will not work on Android.
 
 ### Using MCEF in Your Project
+You can find the latest version of MCEF on the [Maven Central Repository](https://central.sonatype.com/artifact/net.rk4z/mcef/versions).
 
 #### Kotlin DSL
 ```kotlin
@@ -30,7 +31,7 @@ repositories {
 }
 
 dependencies {
-    implementation("net.rk4z:mcef:1.0.0+1.20.6")
+    implementation("net.rk4z:mcef:[Version]+1.20.6")
 }
 ```
 #### Groovy DSL
@@ -40,7 +41,7 @@ repositories {
 }
 
 dependencies {
-    implementation "net.rk4z:mcef:1.0.0+1.20.6"
+    implementation "net.rk4z:mcef:[Version]+1.20.6"
 }
 ```
 
