@@ -79,6 +79,7 @@ tasks.withType<JavaCompile> {
 tasks.named<Jar>("jar") {
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
     dependsOn(tasks.named("generateJcefCommitFile"))
+    archiveClassifier.set("rel")
     manifest {
         attributes(
             "Specification-Title" to project.name,
@@ -126,16 +127,7 @@ publishing {
                     developerConnection.set("scm:git:ssh://github.com/KT-Ruxy/MCEF.git")
                     url.set("https://github.com/KT-Ruxy/MCEF")
                 }
-
-                withXml {
-                    asNode().appendNode("dependencies").apply {
-                        appendNode("dependency").apply {
-                            appendNode("groupId", "org.apache.commons")
-                            appendNode("artifactId", "commons-exec")
-                            appendNode("version", "1.4.0")
-                        }
-                    }
-                }
+                dependencies
             }
         }
     }
