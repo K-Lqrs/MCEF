@@ -33,7 +33,7 @@ repositories {
 }
 
 dependencies {
-    implementation("net.rk4z:mcef:[Version]+1.20.6")
+    implementation("net.rk4z:mcef:[Version]")
 }
 ```
 #### Groovy DSL
@@ -43,7 +43,7 @@ repositories {
 }
 
 dependencies {
-    implementation "net.rk4z:mcef:[Version]+1.20.6"
+    implementation "net.rk4z:mcef:[Version]"
 }
 ```
 
