@@ -79,7 +79,7 @@ tasks.withType<JavaCompile> {
 tasks.named<Jar>("jar") {
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
     dependsOn(tasks.named("generateJcefCommitFile"))
-    archiveClassifier.set("rel")
+    archiveClassifier.set("REL")
     manifest {
         attributes(
             "Specification-Title" to project.name,
